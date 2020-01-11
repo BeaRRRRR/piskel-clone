@@ -9,7 +9,7 @@ function Preview({ frames }) {
   const [gifSrc, setGifSrc] = useState('');
   const [fps, setFps] = useState(6);
 
-  function createPreview(save = false) {
+  function createPreview(save = false, fullscreen = false) {
     const gif = new GIF({
       workers: 2,
       quality: 10,
@@ -32,6 +32,9 @@ function Preview({ frames }) {
       if (save) {
         saveAs(url);
       }
+      if (fullscreen) {
+        window.open(url);
+      }
       setGifSrc(url);
     });
 
@@ -39,34 +42,33 @@ function Preview({ frames }) {
   }
 
   useEffect(() => {
-    console.log(frames);
     if (canvas.canvas && frames.length) {
       createPreview();
     }
-  }, [createPreview, frames]);
-
-  useEffect(() => {
-    console.log(fps);
-  }, [fps]);
+  }, [frames]);
 
   return (
     <div className="Preview">
       <img className="gif" src={gifSrc} alt="Gif" />
-      <label htmlFor="fpsInput" />
-      <input
-        id="fpsInput"
-        type="number"
-        min={1}
-        max={24}
-        step={1}
-        onChange={(e) => {
-          setFps(e.nativeEvent.target.value);
-        }}
-      />
+      <label htmlFor="fpsInput" className="fps-input-label">
+        Frames Per Second
+        <input
+          id="fpsInput"
+          className="fpsInput"
+          type="number"
+          min={1}
+          max={24}
+          step={1}
+          onChange={(e) => {
+            setFps(e.nativeEvent.target.value);
+          }}
+        />
+      </label>
       <div className="buttons">
         <button type="button" id="createPreview" onClick={createPreview}>Create Preview</button>
         <button type="button" onClick={createPreview.bind(this, true)}>Download Gif</button>
         <button type="button" onClick={createPreview.bind(this, true)}>Download Apng</button>
+        <button type="button" onClick={createPreview.bind(this, true, true)}>FullScreen</button>
       </div>
     </div>
   );

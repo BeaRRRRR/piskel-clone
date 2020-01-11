@@ -17,13 +17,24 @@ function Tools({
         <div className="fill">
           <img src="https://img.icons8.com/material/24/000000/fill-color--v1.png" alt="fill" />
         </div>
-        <div className="eraser">
+        <div
+          className="eraser"
+          onClick={() => {
+            setTool('eraser');
+          }}
+        >
           <img src="https://img.icons8.com/material/24/000000/erase--v1.png" alt="eraser" />
         </div>
         <div className="stroke">
           <img src="https://img.icons8.com/material/24/000000/line--v1.png" alt="stroke" />
         </div>
-        <div className="fill-all">
+        <div
+          className="fill-all"
+          onClick={() => {
+            canvas.ctx.fillStyle = currentColor;
+            canvas.ctx.fillRect(0, 0, 512, 512);
+          }}
+        >
           <img src="https://img.icons8.com/material/24/000000/blur--v1.png" alt="fill-all" />
         </div>
       </div>

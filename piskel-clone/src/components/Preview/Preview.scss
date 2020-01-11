@@ -5,6 +5,15 @@
     border: 2px solid greenyellow;
   }
 
+  .fps-input-label {
+    display: block;
+    margin-bottom: 10px;
+
+    .fpsInput {
+      margin-left: 5px;
+    }
+  }
+
   .buttons {
     display: flex;
 
