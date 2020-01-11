@@ -1,22 +1,37 @@
 .Color {
-  display: flex;
   margin-top: 20px;
 
-  .current-color {
-    position: relative;
-    width: 45px;
-    height: 45px;
-    z-index: 2;
-    background-color: blue;
+  .select {
+    display: flex;
+
+    & > input {
+      padding: 0;
+    }
+
+    .current-color {
+      position: relative;
+      width: 45px;
+      height: 45px;
+      z-index: 2;
+      background-color: blue;
+    }
+
+    .previous-color {
+      position: relative;
+      background-color: red;
+      width: 45px;
+      height: 45px;
+      z-index: 1;
+      margin-top: 20px;
+      margin-left: -25px;
+    }
   }
 
-  .previous-color {
-    position: relative;
-    background-color: red;
-    width: 45px;
-    height: 45px;
-    z-index: 1;
-    margin-top: 20px;
-    margin-left: -25px;
+  .swap {
+    background: slategray;
+    color: white;
+    text-align: center;
+    display: block;
+    border-radius: 5px;
   }
 }

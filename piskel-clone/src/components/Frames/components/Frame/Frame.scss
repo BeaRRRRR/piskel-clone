@@ -1,0 +1,55 @@
+.Frame {
+  height: 130px;
+  width: 130px;
+  border: 1px solid slategray;
+  position: relative;
+  background-size: contain;
+  margin-bottom: 15px;
+
+  &.active {
+    border: 3px solid darkblue;
+  }
+
+  & > div {
+    display: flex;
+    justify-content: space-between;
+
+    & > * {
+      min-height: 36px;
+      min-width: 36px;
+    }
+  }
+
+  .top {
+    .count {
+      font-family: Roboto;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 26px;
+      line-height: 26px;
+
+      /* or 150% */
+      display: flex;
+      align-items: center;
+      text-align: center;
+    }
+
+    .delete {
+      background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAABA0lEQVRYhe2X0Q2CMBCGP41hA4i+sYUx7icyD0wCDy4grKEv14j1iEA5jYY/aYBer/2u9EqBRcMVATnQAjevtMBZ2pgpVwb2S2YJ4CLfK7aD2BpLABflVLuqTU9HIerzX2mV68DBTDVpSsf6f30GFoAxAClQALFii8WWhiM95C+iQp5rDyKWupu06fMPBoiBSuouwE6p21oCOAgXbe3d+6/GBMBBVB27H/kogLmyQN1mQ6VFkND/CpIB/kEA2oLTFqYZQDcNu9F2Z8U0DVOg5HWqHUTJ80ZklgWz+v/Ut+DjAK1cjxP6dT5Bh9SM98fwd+UUAhAJRDNh4KsMbvqjsug/dAenHIxHMPnplQAAAABJRU5ErkJggg==") no-repeat;
+    }
+  }
+
+  .bottom {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+
+    .move {
+      background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAsklEQVRYhe2VMQ6AIBAEV320pdj5LQvfZKmNJIQgLh4cMbIJHTJDWBD4cAyApSb8uIa6hAtXlwjB1SRi8CrHYaGi9BlEmkARAZORkVxMA65cbAmTboeFi9vtCVASLryEQFTCh8cGA6IfK1vCPWVLwtyyRpQ/gulpsiuRW+AR7kuwCzPzaLiNySjArPUq7W/4P4G7dyLpnkvjS6jCYxJq8JCECD68/G4D0AFYAcwSgZbqOQFcK3G6HXNeUQAAAABJRU5ErkJggg==") no-repeat;
+    }
+
+    .duplicate {
+      background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAoElEQVRYhe2WSwqAMAxEHy48lN7Pzz2t19BNih+sphi7MQOlUGjm0Q4k4NpUAyMwA8vLFYBBaqo1GBifV58DEORSk3MpoZbtJdSK1FZS1asMDZ9AHrPx1Quos1HiC26zUSoDh/MSGbiVAziAAziAA+wBZtlbg7qxRtZA0mM/knUXPsmmVwtE4L3xJOZXg0d21/20TWtC+JtsJFUqG66fagWJEKY8x2SU7QAAAABJRU5ErkJggg==") no-repeat;
+    }
+  }
+}

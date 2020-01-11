@@ -4,16 +4,20 @@ import './Canvas.scss';
 import canvas from '../../util/canvas';
 
 function Canvas({
-  handleClick, handleDrawingLines, frames, setFrames,
+  handleClick, handleDrawingLines, frames, setFrames, currentFrame,
 }) {
   useEffect(() => {
     /* Setting the canvas element for our helper class when the canvas is rendered,
        i.e. document.getElementById('canvas') isn't null
     */
     canvas.setCanvas(document.getElementById('canvas'));
-    if (!frames) setFrames(canvas.canvas.toDataURL());
-    else canvas.loadFromUrl(frames[0]);
-  }, [frames, setFrames]);
+    if (!frames.length) setFrames([canvas.canvas.toDataURL()]);
+  }, []);
+
+
+  // useEffect(() => {
+  //   canvas.loadFromUrl(currentFrame);
+  // }, [currentFrame]);
 
   return (
     <div className="Canvas">
@@ -35,6 +39,7 @@ Canvas.propTypes = {
   handleDrawingLines: PropTypes.func,
   frames: PropTypes.arrayOf(PropTypes.string),
   setFrames: PropTypes.func,
+  currentFrame: PropTypes.number,
 };
 
 Canvas.defaultProps = {
@@ -42,6 +47,7 @@ Canvas.defaultProps = {
   handleDrawingLines: () => {},
   frames: [],
   setFrames: () => {},
+  currentFrame: 0,
 };
 
 export default Canvas;

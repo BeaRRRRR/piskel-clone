@@ -1,0 +1,28 @@
+.Frames {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+  margin-right: 20px;
+
+  .new {
+    max-width: 136px;
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.5);
+    border: 3px solid #C4C4C4;
+    box-sizing: border-box;
+
+    img {
+      border-style: none;
+      min-height: 32px;
+      min-width: 16px;
+      max-height: 32px;
+      margin-left: 5px;
+    }
+
+    p {
+      line-height: 16px;
+      margin-left: 7px;
+    }
+  }
+}

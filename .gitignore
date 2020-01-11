@@ -62,3 +62,6 @@ typings/
 
 # Webstorm config files
 .idea/
+
+# Build folder
+dist/

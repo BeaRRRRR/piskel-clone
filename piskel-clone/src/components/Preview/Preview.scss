@@ -1,0 +1,28 @@
+.Preview {
+  margin-left: 30px;
+
+  .gif {
+    border: 2px solid greenyellow;
+  }
+
+  .buttons {
+    display: flex;
+
+     & > button {
+       display: block;
+
+       height: 40px;
+       width: 120px;
+       border-radius: 5px;
+
+       background: slategray;
+       color: white;
+
+       text-align: center;
+
+       &:first-child,&:nth-child(2) {
+         margin-right: 10px;
+       }
+     }
+  }
+}

@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import './Tools.scss';
 import Color from './components/Color/Color';
 import colors from '../../util/colors';
 import canvas from '../../util/canvas';
 
-function Tools() {
+function Tools({
+  tool, setTool, currentColor, setCurrentColor, previousColor, setPreviousColor,
+}) {
   return (
     <div className="Tools">
       <div className="tools-container">
@@ -24,9 +27,32 @@ function Tools() {
           <img src="https://img.icons8.com/material/24/000000/blur--v1.png" alt="fill-all" />
         </div>
       </div>
-      <Color />
+      <Color
+        currentColor={currentColor}
+        setCurrentColor={setCurrentColor}
+        previousColor={previousColor}
+        setPreviousColor={setPreviousColor}
+      />
     </div>
   );
 }
+
+Tools.propTypes = {
+  tool: PropTypes.string,
+  setTool: PropTypes.func,
+  currentColor: PropTypes.string,
+  setCurrentColor: PropTypes.func,
+  previousColor: PropTypes.string,
+  setPreviousColor: PropTypes.func,
+};
+
+Tools.defaultProps = {
+  tool: 'pen',
+  setTool: () => {},
+  currentColor: '#ff0000',
+  setCurrentColor: () => {},
+  previousColor: '#0000ff',
+  setPreviousColor: () => {},
+};
 
 export default Tools;
