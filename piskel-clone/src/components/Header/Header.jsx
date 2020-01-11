@@ -8,7 +8,6 @@ function Header() {
         <img src="/icons/nav-icon.svg" alt="more" />
       </div>
       <div className="title">Piskel Clone</div>
-      {/* <div id="netlify-modal" className="netlify-modal" data-netlify-identity-button></div> */}
       <div className="menu-icon">
         <img src="/icons/menu-icon.svg" alt="menu icon" />
       </div>

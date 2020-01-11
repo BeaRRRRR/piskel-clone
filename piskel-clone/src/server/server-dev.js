@@ -19,14 +19,6 @@ app.use(webpackDevMiddleware(compiler, {
 app.use(webpackHotMiddleware(compiler));
 
 app.get('*', (req, res, next) => {
-  // compiler.outputFileSystem.readFile(HTML_FILE, (err, result) => {
-  //   if (err) {
-  //     return next(err);
-  //   }
-  //   res.set('content-type', 'text/html');
-  //   res.send(result);
-  //   res.end();
-  // });
   res.sendFile(HTML_FILE);
 });
 

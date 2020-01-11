@@ -7,6 +7,7 @@ import canvas from '../../util/canvas';
 
 function Preview({ frames }) {
   const [gifSrc, setGifSrc] = useState('');
+  const [fps, setFps] = useState(6);
 
   function createPreview(save = false) {
     const gif = new GIF({
@@ -20,7 +21,10 @@ function Preview({ frames }) {
     frames.forEach((f) => {
       const img = new Image();
       img.src = f;
-      gif.addFrame(img);
+      console.log(1000 / fps);
+      gif.addFrame(img, {
+        delay: 1000 / fps,
+      });
     });
 
     gif.on('finished', (blob) => {
@@ -39,11 +43,26 @@ function Preview({ frames }) {
     if (canvas.canvas && frames.length) {
       createPreview();
     }
-  }, [frames]);
+  }, [createPreview, frames]);
+
+  useEffect(() => {
+    console.log(fps);
+  }, [fps]);
 
   return (
     <div className="Preview">
       <img className="gif" src={gifSrc} alt="Gif" />
+      <label htmlFor="fpsInput" />
+      <input
+        id="fpsInput"
+        type="number"
+        min={1}
+        max={24}
+        step={1}
+        onChange={(e) => {
+          setFps(e.nativeEvent.target.value);
+        }}
+      />
       <div className="buttons">
         <button type="button" id="createPreview" onClick={createPreview}>Create Preview</button>
         <button type="button" onClick={createPreview.bind(this, true)}>Download Gif</button>

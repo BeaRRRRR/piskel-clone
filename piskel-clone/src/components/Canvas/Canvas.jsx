@@ -14,11 +14,6 @@ function Canvas({
     if (!frames.length) setFrames([canvas.canvas.toDataURL()]);
   }, []);
 
-
-  // useEffect(() => {
-  //   canvas.loadFromUrl(currentFrame);
-  // }, [currentFrame]);
-
   return (
     <div className="Canvas">
       <canvas
