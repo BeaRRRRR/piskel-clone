@@ -21,17 +21,28 @@
 
   }
 
-  .nav-icon {
-    margin-left: 19px;
-  }
+  .container {
+    display: flex;
 
-  .menu-icon {
-    margin-left: auto;
-    margin-right: 20px;
-  }
+    & > div,button {
+      height: 40px;
+      width: 108px;
+      border: 1px solid slategray;
+      border-radius: 5px;
+      text-align: center;
+      font-size: 18px;
+    }
 
-  .netlify-modal {
-    margin-left: 20px;
+    .netlify-modal {
+      margin-left: 20px;
+      margin-right: 7px;
+      line-height: 40px;
+
+      a:link,a:visited {
+        text-decoration: none;
+        color: black;
+      }
+    }
   }
 
 }

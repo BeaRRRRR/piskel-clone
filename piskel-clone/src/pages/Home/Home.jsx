@@ -1,11 +1,19 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Link } from 'react-router-dom';
 import './Home.scss';
+import netlifyIdentity from 'netlify-identity-widget';
 import example1 from '../../assets/img/sprite-examples/example1.gif';
 
 function Home() {
+  useEffect(() => {
+    netlifyIdentity.init({
+      container: '#netlify-modal', // defaults to document.body,
+    });
+  }, []);
+
   return (
     <div className="Home">
+      <div id="netlify-modal" className="netlify-modal" data-netlify-identity-button />
       <div className="description">
         <p className="title">
           Piskel-clone

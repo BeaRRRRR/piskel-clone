@@ -7,16 +7,20 @@ import Canvas from '../../components/Canvas/Canvas';
 import Preview from '../../components/Preview/Preview';
 import canvas from '../../util/canvas';
 import colors from '../../util/colors';
+import Settings from '../../components/Header/components/Settings';
 
 function Create() {
   const [currentColor, setCurrentColor] = useState(colors.RED);
   const [previousColor, setPreviousColor] = useState(colors.BLUE);
   const [frames, setFrames] = useState(JSON.parse(localStorage.getItem('frames')) || []);
-  // currentFrame is an index of the currentFrame in out array
+  // currentFrame is an index of the active frame(the one user is working on at the moment) in out array
   const [currentFrame, setCurrentFrame] = useState(0);
   const [tool, setTool] = useState('pen');
   // Unit size, e.g. on 32x32 canvas on mouse click should draw 4 pixels
   const [scale, setScale] = useState(1);
+  const [frameRate, setFrameRate] = useState(7);
+  const [eraserSize, setEraserSize] = useState(1);
+  const [penSize, setPenSize] = useState(1);
 
   function handleCanvasClick(event) {
     const col = Math.floor(event.nativeEvent.offsetX / scale / scale);
@@ -26,18 +30,31 @@ function Create() {
 
   function handleDrawingLines(event) {
     if (tool === 'pen') {
-      canvas.handleDrawingLines(event, currentColor, scale);
+      canvas.handleDrawingLines(event, currentColor, scale, false, penSize);
+    } else if (tool === 'eraser') {
+      canvas.handleDrawingLines(event, currentColor, scale, true, eraserSize);
     }
   }
 
-  useEffect(() => {
-    canvas.loadFromUrl(frames[currentFrame]);
-  }, [currentFrame, frames]);
 
   return (
     <div>
       <div className="header-container">
-        <Header />
+        <Header render={(isModalOpen, setModalOpen) => (
+          <Settings
+            isOpen={isModalOpen}
+            setOpen={setModalOpen}
+            scale={scale}
+            setScale={setScale}
+            penSize={penSize}
+            setPenSize={setPenSize}
+            eraserSize={eraserSize}
+            setEraserSize={setEraserSize}
+            frameRate={frameRate}
+            setFrameRate={setFrameRate}
+          />
+        )}
+        />
       </div>
       <div className="content-container">
         <Tools
@@ -63,6 +80,8 @@ function Create() {
         />
         <Preview
           frames={frames}
+          frameRate={frameRate}
+          setFrameRate={setFrameRate}
         />
       </div>
     </div>

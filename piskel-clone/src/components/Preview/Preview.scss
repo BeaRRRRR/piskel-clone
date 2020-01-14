@@ -5,17 +5,20 @@
     border: 2px solid greenyellow;
   }
 
-  .fps-input-label {
+  .frameRate-input-label {
     display: block;
     margin-bottom: 10px;
 
-    .fpsInput {
-      margin-left: 5px;
+    font-size: 18px;
+
+    .frameRateInput {
+      margin-left: 10px;
     }
   }
 
   .buttons {
     display: flex;
+    justify-content: space-between;
 
      & > button {
        display: block;
@@ -28,10 +31,40 @@
        color: white;
 
        text-align: center;
-
-       &:first-child,&:nth-child(2) {
-         margin-right: 10px;
-       }
      }
+  }
+
+  .fullscreen-modal {
+    position: fixed;
+    z-index: 2;
+    left: 0;
+    top: 0;
+    width: 100% !important;
+    height: 100% !important;
+    background-color: rgba(255,255,255,1);
+
+
+    &.closed {
+      display: none;
+    }
+
+    &.open {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    p {
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      font-size: 30px;
+    }
+
+    img {
+      z-index: 3;
+      width: 1024px;
+      height: 1024px;
+    }
   }
 }

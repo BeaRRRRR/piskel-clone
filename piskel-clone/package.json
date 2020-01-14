@@ -8,7 +8,7 @@
     "coverage": "jest --coverage",
     "buildDev": "rm -rf dist && webpack --mode development --config webpack.server.config.js && webpack --mode development --config webpack.dev.config.js",
     "buildProd": "rm -rf dist && webpack --mode production --config webpack.server.config.js && webpack --mode production --config webpack.prod.config.js",
-    "buildProdWeb" : "rm -rf dist && webpack --mode production --config webpack.prod.config.js",
+    "buildProdWeb": "rm -rf dist && webpack --mode production --config webpack.prod.config.js",
     "start": "node ./dist/server.js"
   },
   "keywords": [],
@@ -33,7 +33,13 @@
       "\\.(css|less|sass|scss)$": "<rootDir>/__mocks__/styleMock.js",
       "\\.(gif|ttf|eot|svg)$": "<rootDir>/__mocks__/fileMock.js"
     },
-    "setupFilesAfterEnv": "<rootDir>/src/setupTests.js"
+    "setupTestFrameworkScriptFile": "<rootDir>/src/setupTests.js",
+    "coverageReporters": [
+      "text-summary"
+    ],
+    "collectCoverageFrom": [
+      "src/**/**/*.{js,jsx}"
+    ]
   },
   "devDependencies": {
     "@babel/core": "^7.7.7",
@@ -44,6 +50,7 @@
     "babel-eslint": "^9.0.0",
     "babel-jest": "^24.9.0",
     "babel-loader": "^8.0.6",
+    "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "babel-preset-react": "^6.24.1",
     "copy-webpack-plugin": "^5.1.1",
     "css-loader": "^3.4.1",

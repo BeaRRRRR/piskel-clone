@@ -10,9 +10,18 @@ function Canvas({
     /* Setting the canvas element for our helper class when the canvas is rendered,
        i.e. document.getElementById('canvas') isn't null
     */
-    canvas.setCanvas(document.getElementById('canvas'));
+    const canvasElement = document.getElementById('canvas');
+    if (canvasElement.width === 512 && canvasElement.height === 512) {
+      canvas.setCanvas(canvasElement);
+    }
     if (!frames.length) setFrames([canvas.canvas.toDataURL()]);
   }, []);
+
+
+  useEffect(() => {
+    canvas.clear();
+    canvas.loadFromUrl(frames[currentFrame]);
+  }, [currentFrame, frames]);
 
   return (
     <div className="Canvas">

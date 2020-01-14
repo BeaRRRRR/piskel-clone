@@ -1,4 +1,30 @@
 .Home {
+
+  .netlify-modal {
+    float: right;
+
+    background: black;
+    color: white;
+
+    height: 48px;
+    width: 150px;
+    border-radius: 5px;
+    margin-top: 5px;
+    margin-right: 5px;
+
+    font-size: 20px;
+    line-height: 44px;
+    text-align: center;
+
+
+    cursor: pointer;
+
+    & > a:visited,a:link {
+      text-decoration: none;
+      color: white;
+    }
+  }
+
   .description {
     display: flex;
     flex-direction: column;
@@ -123,10 +149,6 @@
 
       & > div {
         max-width: 470px;
-
-        //&:nth-child(1),&:nth-child(2),&:nth-child(3) {
-        //  margin-right: 20px;
-        //}
 
         .title {
           font-weight: bold;

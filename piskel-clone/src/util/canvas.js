@@ -1,11 +1,9 @@
-import colors from './colors';
 import line from './algorithms/bresenham';
 
 /* A helper class representing the canvas */
 class Canvas {
   constructor() {
     this.down = false;
-    this.cords;
 
     this.eventTypes = {
       mousedown: (event, scale) => {
@@ -15,11 +13,11 @@ class Canvas {
           row: Math.floor(event.nativeEvent.offsetY / (scale ** 2)),
         };
       },
-      mousemove: (event, scale, color) => {
+      mousemove: (event, scale, color, erase, size) => {
         if (this.down) {
           const col = Math.floor(event.nativeEvent.offsetX / (scale ** 2));
           const row = Math.floor(event.nativeEvent.offsetY / (scale ** 2));
-          line(this.cords.col, this.cords.row, col, row, scale, color, this.ctx);
+          line(this.cords.col, this.cords.row, col, row, scale, color, this.ctx, erase, size);
           this.cords.col = col;
           this.cords.row = row;
         }
@@ -54,8 +52,8 @@ class Canvas {
     this.ctx.fillRect(col * scale, row * scale, scale, scale);
   }
 
-  handleDrawingLines(event, color, scale) {
-    this.eventTypes[event.nativeEvent.type](event, scale, color);
+  handleDrawingLines(event, color, scale, erase = false, size = 1) {
+    this.eventTypes[event.nativeEvent.type](event, scale, color, erase, size);
   }
 }
 

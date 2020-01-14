@@ -5,11 +5,11 @@ import './Preview.scss';
 import GIF from 'gif.js.optimized';
 import canvas from '../../util/canvas';
 
-function Preview({ frames }) {
+function Preview({ frames, frameRate, setFrameRate }) {
   const [gifSrc, setGifSrc] = useState('');
-  const [fps, setFps] = useState(6);
+  const [isFullscreen, setFullscreen] = useState(false);
 
-  function createPreview(save = false, fullscreen = false) {
+  function createPreview(save = false) {
     const gif = new GIF({
       workers: 2,
       quality: 10,
@@ -21,9 +21,8 @@ function Preview({ frames }) {
     frames.forEach((f) => {
       const img = new Image();
       img.src = f;
-      console.log(1000 / fps);
       gif.addFrame(img, {
-        delay: 1000 / fps,
+        delay: 1000 / frameRate,
       });
     });
 
@@ -32,9 +31,6 @@ function Preview({ frames }) {
       if (save) {
         saveAs(url);
       }
-      if (fullscreen) {
-        window.open(url);
-      }
       setGifSrc(url);
     });
 
@@ -42,25 +38,41 @@ function Preview({ frames }) {
   }
 
   useEffect(() => {
-    if (canvas.canvas && frames.length) {
+    if (canvas.canvas && frames.length && canvas.canvas.width > 0 && canvas.canvas.height > 0) {
       createPreview();
     }
-  }, [frames]);
+  }, [frames, frameRate]);
+
+  useEffect(() => {
+    function listener(e) {
+      setFullscreen(e.key !== 'Escape' && isFullscreen);
+    }
+    document.addEventListener('keydown', listener);
+
+    return () => {
+      document.removeEventListener('keydown', listener);
+    };
+  }, [isFullscreen]);
 
   return (
     <div className="Preview">
-      <img className="gif" src={gifSrc} alt="Gif" />
-      <label htmlFor="fpsInput" className="fps-input-label">
+      <div className={`fullscreen-modal ${isFullscreen ? 'open' : 'closed'}`}>
+        <p>Press ESC to exit fullscreen mode</p>
+        <img src={gifSrc} alt="" />
+      </div>
+      <img className="gif" src={isFullscreen ? '' : gifSrc} alt="Gif" />
+      <label htmlFor="frameRateInput" className="frameRate-input-label">
         Frames Per Second
         <input
-          id="fpsInput"
-          className="fpsInput"
+          id="frameRateInput"
+          className="frameRateInput"
           type="number"
           min={1}
           max={24}
           step={1}
+          defaultValue={frameRate}
           onChange={(e) => {
-            setFps(e.nativeEvent.target.value);
+            setFrameRate(e.nativeEvent.target.value);
           }}
         />
       </label>
@@ -68,7 +80,7 @@ function Preview({ frames }) {
         <button type="button" id="createPreview" onClick={createPreview}>Create Preview</button>
         <button type="button" onClick={createPreview.bind(this, true)}>Download Gif</button>
         <button type="button" onClick={createPreview.bind(this, true)}>Download Apng</button>
-        <button type="button" onClick={createPreview.bind(this, true, true)}>FullScreen</button>
+        <button type="button" onClick={setFullscreen.bind(this, true)}>FullScreen</button>
       </div>
     </div>
   );

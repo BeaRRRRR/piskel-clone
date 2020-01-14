@@ -49,7 +49,6 @@ function Frames({
 
   return (
     <div className="Frames">
-      {console.log(frames)}
       {frames.map((frame, index) => (
         <Frame
           key={`${frame}${index}`}
