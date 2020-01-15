@@ -14,9 +14,6 @@ function Tools({
         <div className="pen">
           <img src="https://img.icons8.com/material/24/000000/pencil--v1.png" alt="pen" />
         </div>
-        <div className="fill">
-          <img src="https://img.icons8.com/material/24/000000/fill-color--v1.png" alt="fill" />
-        </div>
         <div
           className="eraser"
           onClick={() => {
@@ -24,9 +21,6 @@ function Tools({
           }}
         >
           <img src="https://img.icons8.com/material/24/000000/erase--v1.png" alt="eraser" />
-        </div>
-        <div className="stroke">
-          <img src="https://img.icons8.com/material/24/000000/line--v1.png" alt="stroke" />
         </div>
         <div
           className="fill-all"

@@ -79,7 +79,6 @@ function Preview({ frames, frameRate, setFrameRate }) {
       <div className="buttons">
         <button type="button" id="createPreview" onClick={createPreview}>Create Preview</button>
         <button type="button" onClick={createPreview.bind(this, true)}>Download Gif</button>
-        <button type="button" onClick={createPreview.bind(this, true)}>Download Apng</button>
         <button type="button" onClick={setFullscreen.bind(this, true)}>FullScreen</button>
       </div>
     </div>
@@ -88,10 +87,14 @@ function Preview({ frames, frameRate, setFrameRate }) {
 
 Preview.propTypes = {
   frames: PropTypes.arrayOf(PropTypes.string),
+  frameRate: PropTypes.number,
+  setFrameRate: PropTypes.func,
 };
 
 Preview.defaultProps = {
   frames: [],
+  frameRate: 7,
+  setFrameRate: () => {},
 };
 
 export default Preview;
