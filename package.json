@@ -14,7 +14,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "core-js": "^3.6.4",
+    "core-js": "^2.6.11",
     "express": "^4.17.1",
     "file-saver": "^2.0.2",
     "gif.js.optimized": "^1.0.1",
